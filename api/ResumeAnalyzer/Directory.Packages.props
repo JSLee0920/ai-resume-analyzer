@@ -31,6 +31,7 @@
     <PackageVersion Include="Respawn" Version="7.0.0" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.13.13" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.3" />
     <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.16.0" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="13.2.0" />
     <PackageVersion Include="Aspire.Hosting.Azure.PostgreSQL" Version="13.2.0" />

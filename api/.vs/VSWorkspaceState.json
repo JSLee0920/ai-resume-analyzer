@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ResumeAnalyzer",
+    "\\ResumeAnalyzer\\src",
+    "\\ResumeAnalyzer\\src\\Application",
+    "\\ResumeAnalyzer\\src\\Application\\Common",
+    "\\ResumeAnalyzer\\src\\Application\\Common\\Behaviours",
+    "\\ResumeAnalyzer\\src\\Web",
+    "\\ResumeAnalyzer\\src\\Web\\Services"
+  ],
+  "SelectedNode": "\\ResumeAnalyzer\\src\\Application\\Common\\Interfaces",
+  "PreviewInSolutionExplorer": false
+}

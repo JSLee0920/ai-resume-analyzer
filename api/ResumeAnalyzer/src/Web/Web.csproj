@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>ResumeAnalyzer.Web</RootNamespace>
     <AssemblyName>ResumeAnalyzer.Web</AssemblyName>
+    <UserSecretsId>c88dbb53-f1c4-4380-93bd-98bca3445fab</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +24,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Scalar.AspNetCore" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
   </ItemGroup>
 
 </Project>

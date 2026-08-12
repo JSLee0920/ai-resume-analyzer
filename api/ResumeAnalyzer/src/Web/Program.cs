@@ -24,8 +24,12 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseCors(static builder => 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
+app.UseCors(static builder =>
     builder.AllowAnyMethod()
         .AllowAnyHeader()
         .AllowAnyOrigin());
@@ -34,6 +38,11 @@ app.UseFileServer();
 
 app.MapOpenApi();
 app.MapScalarApiReference();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/openapi/v1.json", "ResumeAnalyzer API v1");
+    options.RoutePrefix = "swagger";
+});
 
 app.UseExceptionHandler(options => { });
 
