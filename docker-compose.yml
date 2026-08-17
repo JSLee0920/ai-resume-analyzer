@@ -27,7 +27,7 @@ services:
     mem_limit: 512m
     environment:
       ACCEPT_EULA: Y
-      SEQ_FIRSTRUN_NOAUTHENTICATION: "Y"
+      SEQ_FIRSTRUN_NOAUTHENTICATION: "true"
     volumes:
       - seq-data:/data
     ports:

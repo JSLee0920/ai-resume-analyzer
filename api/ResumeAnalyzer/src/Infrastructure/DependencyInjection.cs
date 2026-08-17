@@ -1,12 +1,15 @@
-﻿using ResumeAnalyzer.Application.Common.Interfaces;
+﻿using System.Net.Http.Headers;
+using ResumeAnalyzer.Application.Common.Interfaces;
 using ResumeAnalyzer.Infrastructure.Data;
 using ResumeAnalyzer.Infrastructure.Data.Interceptors;
+using ResumeAnalyzer.Infrastructure.Email;
 using ResumeAnalyzer.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -42,9 +45,34 @@ public static class DependencyInjection
             .AddIdentityCore<ApplicationUser>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddClaimsPrincipalFactory<ApplicationUserClaimsPrincipalFactory>()
             .AddApiEndpoints();
+
+        builder.Services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequiredLength = 8;
+            options.Password.RequireNonAlphanumeric = false;
+
+            options.Lockout.MaxFailedAccessAttempts = 5;
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+
+            options.User.RequireUniqueEmail = true;
+            options.SignIn.RequireConfirmedEmail = true;
+        });
 
         builder.Services.AddSingleton(TimeProvider.System);
         builder.Services.AddTransient<IIdentityService, IdentityService>();
+
+        builder.Services.Configure<ResendOptions>(
+            builder.Configuration.GetSection(ResendOptions.SectionName));
+
+        builder.Services.AddHttpClient<IEmailService, ResendEmailService>((sp, client) =>
+        {
+            var resend = sp.GetRequiredService<IOptions<ResendOptions>>().Value;
+
+            client.BaseAddress = new Uri("https://api.resend.com/");
+            client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", resend.ApiKey);
+        });
     }
 }
