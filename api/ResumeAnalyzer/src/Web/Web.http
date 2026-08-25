@@ -1,9 +1,0 @@
-# For more info on HTTP files go to https://aka.ms/vs/httpfile
-@Web_HostAddress = http://localhost:5003
-
-@Email=administrator@localhost
-@Password=Administrator1!
-@BearerToken=<YourToken>
-
-# The template's Users and WeatherForecasts endpoints were removed.
-# Add your own requests here as you build features.
